@@ -107,7 +107,7 @@ class frontendController extends Controller
             if($voters_check_siswa_count > 0){
                 return redirect('/validasiVote')->with('gagalValidasi', 'Anda telah melakukan pemilihan!');
             }else{
-                $validation_code_count = Siswa::where(['nis' => $request->nis_npk], ['validation_code' => $request->validation_code])->count();
+                $validation_code_count = Siswa::where(['nis' => $request->nis_npk, 'validation_code' => $request->validation_code])->count();
 
                     if($validation_code_count > 0){
                         $siswa = DB::table('siswa')->where('nis', $request->nis_npk)->first();
@@ -128,8 +128,7 @@ class frontendController extends Controller
             if($voters_check_guru_count > 0){
                 return redirect('/validasiVote')->with('gagalValidasi', 'Anda telah melakukan pemilihan!');
             }else{
-                $validation_code_count2 = Guru::where(['npk' => $request->nis_npk],
-                                                      ['validation_code' => $request->validation_code])->count();
+                $validation_code_count2 = Guru::where(['npk' => $request->nis_npk, 'validation_code' => $request->validation_code])->count();
 
                     if($validation_code_count2 > 0){
                         $guru = DB::table('guru')->where('npk', $request->nis_npk)->first();
@@ -150,8 +149,7 @@ class frontendController extends Controller
             if($voters_check_staff_count > 0){
                 return redirect('/validasiVote')->with('gagalValidasi', 'Anda telah melakukan pemilihan!');
             }else{
-                $validation_code_count3 = Staff::where(['npk' => $request->nis_npk],
-                                                       ['validation_code' => $request->validation_code])->count();
+                $validation_code_count3 = Staff::where(['npk' => $request->nis_npk, 'validation_code' => $request->validation_code])->count();
 
                     if($validation_code_count3 > 0){
                         $staff = DB::table('staff')->where('npk', $request->nis_npk)->first();
